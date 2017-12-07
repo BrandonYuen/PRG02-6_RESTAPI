@@ -5,8 +5,11 @@ const mongoose = require('mongoose');
 // Express App
 const app = express();
 
+// Load config
+const config = require('./config');
+
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost/Portfolio');
+mongoose.connect('mongodb://'+config.mongo.uri+'/'+config.mongo.db);
 mongoose.Promise = global.Promise;
 
 app.use(bodyParser.json());

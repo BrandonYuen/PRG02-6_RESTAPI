@@ -1,3 +1,4 @@
+const config = require('../config');
 const express = require('express');
 const router = express.Router();
 const Project = require('../models/project.js');
@@ -5,7 +6,16 @@ const Project = require('../models/project.js');
 // get a list of projects from db
 router.get('/projects', function(req, res, next){
 	Project.find({}).then(function(projects){
-		res.send(projects);
+		res.send(
+			{
+				_items: projects,
+				_links: {
+					self: {
+						href: 'http://www.'+config.hostname+'/api/projects'
+					}
+				}
+			}
+		);
 	})
 });
 
