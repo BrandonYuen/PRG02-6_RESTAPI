@@ -8,10 +8,34 @@ router.get('/projects', function(req, res, next){
 	Project.find({}).then(function(projects){
 		res.send(
 			{
-				_items: projects,
+				items: projects,
 				_links: {
 					self: {
 						href: 'http://www.'+config.hostname+'/api/projects'
+					}
+				},
+				_pagination: {
+					currentPage: 0,
+					currentItems: 0,
+					totalPages: 0,
+					totalItems: 0,
+					_links: {
+						first: {
+							page: 0,
+							href: "test"
+						},
+						last: {
+							page: 0,
+							href: "test"
+						},
+						previous: {
+							page: 0,
+							href: "test"
+						},
+						next: {
+							page: 0,
+							href: "test"
+						}
 					}
 				}
 			}
