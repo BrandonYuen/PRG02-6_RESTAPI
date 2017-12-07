@@ -14,7 +14,7 @@ router.get('/projects', function(req, res, next){
 						href: 'http://www.'+config.hostname+'/api/projects'
 					}
 				},
-				_pagination: {
+				pagination: {
 					currentPage: 0,
 					currentItems: 0,
 					totalPages: 0,
