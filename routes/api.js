@@ -32,4 +32,16 @@ router.delete('/projects/:id', function(req, res, next){
 	});
 });
 
+// options for collection
+router.options('/projects', function(req, res, next){
+	res.header('Allow', 'GET,POST,OPTIONS');
+	res.send(200);
+});
+
+// options for detail resource
+router.options('/projects/:id', function(req, res, next){
+	res.header('Allow', 'GET,PUT,DELETE,OPTIONS');
+	res.send(200);
+});
+
 module.exports = router;
