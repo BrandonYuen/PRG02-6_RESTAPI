@@ -11,6 +11,17 @@ mongoose.Promise = global.Promise;
 
 app.use(bodyParser.json());
 
+// accept header middleware
+app.use(function(req, res, next){
+
+	// if not a json request, send error
+	if (!req.accepts('application/json')) {
+		res.status(406).send( {message: 'unsupported format requested: '+req.get("accept")} );
+	}else {
+		next();
+	}
+});
+
 // initialise routes
 app.use('/api', require('./routes/api.js'));
 
