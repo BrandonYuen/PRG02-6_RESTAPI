@@ -2,7 +2,7 @@ const config = require('../config');
 const Project = require('../models/project.js');
 
 // get list of all Projects
-exports.getList = function(req, res) {
+exports.getList = function(req, res, next) {
 
 	Project.find({}).lean().then(function(projects) {
 
@@ -61,9 +61,8 @@ exports.getList = function(req, res) {
 	})
 };
 
-
 // get detail resource of single project
-exports.getById = function(req, res) {
+exports.getById = function(req, res, next) {
 	Project.findOne({_id: req.params.id}).lean().then(function(project){
 
 		// Add links to project
@@ -79,4 +78,12 @@ exports.getById = function(req, res) {
 
 		res.send(project);
 	});
+};
+
+// get detail resource of single project
+exports.createProject = function(req, res, next) {
+	console.log('req.body: ',req.body);
+	Project.create(req.body).then(function(project){
+		res.send(project);
+	}).catch(next);
 };

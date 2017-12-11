@@ -9,11 +9,7 @@ var projectController = require('../controllers/projectController');
 router.get('/projects', projectController.getList);
 
 // add new project to db
-router.post('/projects', function(req, res, next){
-	Project.create(req.body).then(function(project){
-		res.send(project);
-	}).catch(next);
-});
+router.post('/projects', projectController.createProject);
 
 // get detail resource project from db
 router.get('/projects/:id', projectController.getById);
