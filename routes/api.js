@@ -15,30 +15,28 @@ router.post('/projects', projectController.createProject);
 router.get('/projects/:id', projectController.getById);
 
 // update project in db
-router.put('/projects/:id', function(req, res, next){
-	Project.findByIdAndUpdate({_id: req.params.id}, req.body).then(function(){
-		Project.findOne({_id: req.params.id}).then(function(project){
-			res.send(project);
-		});
-	});
-});
+router.put('/projects/:id', projectController.updateProject);
 
 // delete project from db
-router.delete('/projects/:id', function(req, res, next){
-	Project.findByIdAndRemove({_id: req.params.id}).then(function(project){
-		res.send(project);
-	});
-});
+router.delete('/projects/:id', projectController.deleteProject);
 
 // options for collection
 router.options('/projects', function(req, res, next){
 	res.header('Allow', 'GET,POST,OPTIONS');
+	res.header('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
+	res.header('Access-Control-Allow-Origin', '*');
+	res.header('Access-Control-Allow-Credentials', true);
+	res.header('Access-Control-Allow-Headers', 'Content-Type');
 	res.sendStatus(200);
 });
 
 // options for detail resource
 router.options('/projects/:id', function(req, res, next){
 	res.header('Allow', 'GET,PUT,DELETE,OPTIONS');
+	res.header('Access-Control-Allow-Methods', 'GET,PUT,DELETE,OPTIONS');
+	res.header('Access-Control-Allow-Origin', '*');
+	res.header('Access-Control-Allow-Credentials', true);
+	res.header('Access-Control-Allow-Headers', 'Content-Type');
 	res.sendStatus(200);
 });
 
