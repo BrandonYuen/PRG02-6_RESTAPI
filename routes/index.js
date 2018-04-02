@@ -5,7 +5,7 @@ const router = express.Router();
 // render portfolio view
 //router.get('/', {portfolioController.renderSinglePage});
 router.get('/', (req, res, next) => {
-	res.sendFile('views/index.html', { root: '.' });
+	res.sendFile('dist/index.html', { root: '.' });
 })
 
 module.exports = router;

@@ -2,6 +2,8 @@
 var config = require('./config.development');
 
 // Update new config settings
+
+// general
 config.env = 'production';
 config.hostname = 'brandonyuen.nl';
 
